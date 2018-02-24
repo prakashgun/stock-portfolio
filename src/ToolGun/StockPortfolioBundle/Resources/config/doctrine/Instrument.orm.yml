@@ -1,0 +1,21 @@
+ToolGun\StockPortfolioBundle\Entity\Instrument:
+    type: entity
+    table: null
+    repositoryClass: ToolGun\StockPortfolioBundle\Repository\InstrumentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        ticker:
+            type: string
+            length: '10'
+            unique: true
+        name:
+            type: string
+            length: 255
+        currentPrice:
+            type: float
+    lifecycleCallbacks: {  }
