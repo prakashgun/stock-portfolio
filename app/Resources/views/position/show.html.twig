@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Position</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ position.id }}</td>
+            </tr>
+            <tr>
+                <th>Valuation</th>
+                <td>{{ position.valuation }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if position.date %}{{ position.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Method</th>
+                <td>{{ position.method }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('position_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

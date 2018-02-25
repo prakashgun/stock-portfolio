@@ -1,0 +1,12 @@
+position_index:
+    path:     /
+    defaults: { _controller: "ToolGunStockPortfolioBundle:Position:index" }
+    methods:  GET
+
+position_show:
+    path:     /{id}/show
+    defaults: { _controller: "ToolGunStockPortfolioBundle:Position:show" }
+    methods:  GET
+
+
+

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Positions list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Valuation</th>
+                <th>Date</th>
+                <th>Method</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for position in positions %}
+            <tr>
+                <td><a href="{{ path('position_show', { 'id': position.id }) }}">{{ position.id }}</a></td>
+                <td>{{ position.valuation }}</td>
+                <td>{% if position.date %}{{ position.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ position.method }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('position_show', { 'id': position.id }) }}">show</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}
