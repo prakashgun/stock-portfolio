@@ -22,14 +22,15 @@ class InstrumentController extends Controller
 
         $instruments = $em->getRepository('ToolGunStockPortfolioBundle:Instrument')->findAll();
 
-        return $this->render('instrument/index.html.twig', array(
+        return $this->render('@ToolGunStockPortfolio/Instrument/index.html.twig', array(
             'instruments' => $instruments,
         ));
     }
 
     /**
      * Creates a new instrument entity.
-     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -45,7 +46,7 @@ class InstrumentController extends Controller
             return $this->redirectToRoute('instrument_show', array('id' => $instrument->getId()));
         }
 
-        return $this->render('instrument/new.html.twig', array(
+        return $this->render('@ToolGunStockPortfolio/Instrument/new.html.twig', array(
             'instrument' => $instrument,
             'form' => $form->createView(),
         ));
@@ -53,13 +54,14 @@ class InstrumentController extends Controller
 
     /**
      * Finds and displays a instrument entity.
-     *
+     * @param Instrument $instrument
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Instrument $instrument)
     {
         $deleteForm = $this->createDeleteForm($instrument);
 
-        return $this->render('instrument/show.html.twig', array(
+        return $this->render('@ToolGunStockPortfolio/Instrument/show.html.twig', array(
             'instrument' => $instrument,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -67,7 +69,9 @@ class InstrumentController extends Controller
 
     /**
      * Displays a form to edit an existing instrument entity.
-     *
+     * @param Request $request
+     * @param Instrument $instrument
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Instrument $instrument)
     {
@@ -81,7 +85,7 @@ class InstrumentController extends Controller
             return $this->redirectToRoute('instrument_edit', array('id' => $instrument->getId()));
         }
 
-        return $this->render('instrument/edit.html.twig', array(
+        return $this->render('@ToolGunStockPortfolio/Instrument/edit.html.twig', array(
             'instrument' => $instrument,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -90,7 +94,9 @@ class InstrumentController extends Controller
 
     /**
      * Deletes a instrument entity.
-     *
+     * @param Request $request
+     * @param Instrument $instrument
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Instrument $instrument)
     {
@@ -118,7 +124,6 @@ class InstrumentController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('instrument_delete', array('id' => $instrument->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

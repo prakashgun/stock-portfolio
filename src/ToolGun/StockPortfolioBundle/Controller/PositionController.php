@@ -22,19 +22,20 @@ class PositionController extends Controller
 
         $positions = $em->getRepository('ToolGunStockPortfolioBundle:Position')->findAll();
 
-        return $this->render('position/index.html.twig', array(
+        return $this->render('@ToolGunStockPortfolio/Position/index.html.twig', array(
             'positions' => $positions,
         ));
     }
 
     /**
      * Finds and displays a position entity.
-     *
+     * @param Position $position
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Position $position)
     {
 
-        return $this->render('position/show.html.twig', array(
+        return $this->render('@ToolGunStockPortfolio/Position/show.html.twig', array(
             'position' => $position,
         ));
     }

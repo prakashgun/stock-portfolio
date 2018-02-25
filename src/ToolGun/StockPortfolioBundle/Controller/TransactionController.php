@@ -29,7 +29,8 @@ class TransactionController extends Controller
 
     /**
      * Creates a new transaction entity.
-     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -53,7 +54,8 @@ class TransactionController extends Controller
 
     /**
      * Finds and displays a transaction entity.
-     *
+     * @param Transaction $transaction
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Transaction $transaction)
     {
@@ -67,7 +69,9 @@ class TransactionController extends Controller
 
     /**
      * Displays a form to edit an existing transaction entity.
-     *
+     * @param Request $request
+     * @param Transaction $transaction
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Transaction $transaction)
     {
@@ -90,7 +94,9 @@ class TransactionController extends Controller
 
     /**
      * Deletes a transaction entity.
-     *
+     * @param Request $request
+     * @param Transaction $transaction
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Transaction $transaction)
     {
@@ -118,7 +124,6 @@ class TransactionController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('transaction_delete', array('id' => $transaction->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }
