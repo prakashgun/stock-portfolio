@@ -36,7 +36,7 @@ class Position
      *
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -48,7 +48,7 @@ class Position
      *
      * @return Position
      */
-    public function setValuation($valuation): Position
+    public function setValuation($valuation): ?Position
     {
         $this->valuation = $valuation;
 
@@ -60,7 +60,7 @@ class Position
      *
      * @return float
      */
-    public function getValuation(): float
+    public function getValuation(): ?float
     {
         return $this->valuation;
     }
@@ -68,7 +68,7 @@ class Position
     /**
      * @return \DateTime
      */
-    public function getDate(): \DateTime
+    public function getDate(): ?\DateTime
     {
         return $this->date;
     }
@@ -77,7 +77,7 @@ class Position
      * @param \DateTime $date
      * @return Position
      */
-    public function setDate(\DateTime $date): Position
+    public function setDate(\DateTime $date): ?Position
     {
         $this->date = $date;
         return $this;
@@ -86,7 +86,7 @@ class Position
     /**
      * @return string
      */
-    public function getMethod(): string
+    public function getMethod(): ?string
     {
         return $this->method;
     }
@@ -95,7 +95,7 @@ class Position
      * @param string $method
      * @return Position
      */
-    public function setMethod(string $method): Position
+    public function setMethod(string $method): ?Position
     {
         if (!in_array($method, [self::VALUATION_METHOD_FIFO, self::VALUATION_METHOD_AVERAGE])) {
             throw new \InvalidArgumentException("Invalid valuation method");

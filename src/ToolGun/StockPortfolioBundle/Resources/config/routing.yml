@@ -6,6 +6,10 @@ tool_gun_stock_portfolio_position:
     resource: "@ToolGunStockPortfolioBundle/Resources/config/routing/position.yml"
     prefix:   /position
 
+tool_gun_stock_portfolio_transaction:
+    resource: "@ToolGunStockPortfolioBundle/Resources/config/routing/transaction.yml"
+    prefix:   /transaction
+
 tool_gun_stock_portfolio_homepage:
     path:     /
     defaults: { _controller: ToolGunStockPortfolioBundle:Home:index }

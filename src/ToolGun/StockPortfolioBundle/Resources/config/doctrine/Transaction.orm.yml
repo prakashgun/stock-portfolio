@@ -18,7 +18,5 @@ ToolGun\StockPortfolioBundle\Entity\Transaction:
             type: float
         date:
             type: datetime
-    manyToOne:
-        position:
-            targetEntity: ToolGun\StockPortfolioBundle\Entity\Position
+
     lifecycleCallbacks: {  }
