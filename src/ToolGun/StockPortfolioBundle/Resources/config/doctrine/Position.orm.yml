@@ -1,0 +1,19 @@
+ToolGun\StockPortfolioBundle\Entity\Position:
+    type: entity
+    table: null
+    repositoryClass: ToolGun\StockPortfolioBundle\Repository\PositionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        valuation:
+            type: float
+        date:
+            type: datetime
+        method:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

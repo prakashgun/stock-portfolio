@@ -1,0 +1,24 @@
+ToolGun\StockPortfolioBundle\Entity\Transaction:
+    type: entity
+    table: null
+    repositoryClass: ToolGun\StockPortfolioBundle\Repository\TransactionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        buyOrSell:
+            type: string
+            length: '5'
+        quantity:
+            type: integer
+        price:
+            type: float
+        date:
+            type: datetime
+    manyToOne:
+        position:
+            targetEntity: ToolGun\StockPortfolioBundle\Entity\Position
+    lifecycleCallbacks: {  }

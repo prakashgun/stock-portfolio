@@ -81,7 +81,7 @@ class Instrument
      *
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -93,7 +93,7 @@ class Instrument
      *
      * @return Instrument
      */
-    public function setCurrentPrice(float $currentPrice)
+    public function setCurrentPrice(float $currentPrice): Instrument
     {
         $this->currentPrice = $currentPrice;
 
