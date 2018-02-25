@@ -1,1 +1,23 @@
 ToolGun\StockPortfolioBundle\Entity\Instrument:
+    properties:
+        ticker:
+            - NotBlank: ~
+            - Length:
+                min: 3
+                max: 10
+                minMessage: 'Ticker must be at least {{ limit }} characters long'
+                maxMessage: 'Ticker cannot be longer than {{ limit }} characters'
+        name:
+            - NotBlank: ~
+            - Length:
+                min: 2
+                max: 255
+                minMessage: 'Name must be at least {{ limit }} characters long'
+                maxMessage: 'Name cannot be longer than {{ limit }} characters'
+        currentPrice:
+            - NotBlank: ~
+            - Range:
+                min: 0
+                max: 999999999
+                minMessage: 'Cannot be less than {{ limit }}'
+                maxMessage: 'Cannot be greater than {{ limit }}'

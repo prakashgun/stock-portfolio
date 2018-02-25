@@ -97,10 +97,6 @@ class Position
      */
     public function setMethod(string $method): ?Position
     {
-        if (!in_array($method, [self::VALUATION_METHOD_FIFO, self::VALUATION_METHOD_AVERAGE])) {
-            throw new \InvalidArgumentException("Invalid valuation method");
-        }
-
         $this->method = $method;
         return $this;
     }

@@ -1,1 +1,29 @@
 ToolGun\StockPortfolioBundle\Entity\Transaction:
+    properties:
+        buyOrSell:
+            - NotBlank: ~
+            - Choice: [buy, sell]
+        quantity:
+            - NotBlank: ~
+            - Type:
+                type: integer
+                message: 'The value {{ value }} is not a valid {{ type }}'
+            - Range:
+                min: 0
+                max: 999999999
+                minMessage: 'Cannot be less than {{ limit }}'
+                maxMessage: 'Cannot be greater than {{ limit }}'
+        price:
+            - NotBlank: ~
+            - Type:
+                type: float
+                message: 'The value {{ value }} is not a valid {{ type }}'
+            - Range:
+                min: 0
+                max: 999999999
+                minMessage: 'Cannot be less than {{ limit }}'
+                maxMessage: 'Cannot be greater than {{ limit }}'
+        date:
+            - NotBlank: ~
+            - Type:
+                type: datetime

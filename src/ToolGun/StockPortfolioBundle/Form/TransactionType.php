@@ -3,6 +3,7 @@
 namespace ToolGun\StockPortfolioBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use ToolGun\StockPortfolioBundle\Entity\Transaction;
@@ -14,7 +15,16 @@ class TransactionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('buyOrSell')->add('quantity')->add('price')->add('date');
+        $builder
+            ->add('buyOrSell', ChoiceType::class, [
+                'choices' => [
+                    'Buy' => 'buy',
+                    'Sell' => 'sell',
+                ]
+            ])
+            ->add('quantity')
+            ->add('price')
+            ->add('date');
     }
 
     /**

@@ -5,6 +5,7 @@ namespace ToolGun\StockPortfolioBundle\Controller;
 use ToolGun\StockPortfolioBundle\Entity\Transaction;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use ToolGun\StockPortfolioBundle\Form\TransactionType;
 
 /**
  * Transaction controller.
@@ -22,7 +23,7 @@ class TransactionController extends Controller
 
         $transactions = $em->getRepository('ToolGunStockPortfolioBundle:Transaction')->findAll();
 
-        return $this->render('transaction/index.html.twig', array(
+        return $this->render('@ToolGunStockPortfolio/Transaction/index.html.twig', array(
             'transactions' => $transactions,
         ));
     }
@@ -35,7 +36,7 @@ class TransactionController extends Controller
     public function newAction(Request $request)
     {
         $transaction = new Transaction();
-        $form = $this->createForm('ToolGun\StockPortfolioBundle\Form\TransactionType', $transaction);
+        $form = $this->createForm(TransactionType::class, $transaction);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -46,7 +47,7 @@ class TransactionController extends Controller
             return $this->redirectToRoute('transaction_show', array('id' => $transaction->getId()));
         }
 
-        return $this->render('transaction/new.html.twig', array(
+        return $this->render('@ToolGunStockPortfolio/Transaction/new.html.twig', array(
             'transaction' => $transaction,
             'form' => $form->createView(),
         ));
@@ -61,7 +62,7 @@ class TransactionController extends Controller
     {
         $deleteForm = $this->createDeleteForm($transaction);
 
-        return $this->render('transaction/show.html.twig', array(
+        return $this->render('@ToolGunStockPortfolio/Transaction/show.html.twig', array(
             'transaction' => $transaction,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -76,7 +77,7 @@ class TransactionController extends Controller
     public function editAction(Request $request, Transaction $transaction)
     {
         $deleteForm = $this->createDeleteForm($transaction);
-        $editForm = $this->createForm('ToolGun\StockPortfolioBundle\Form\TransactionType', $transaction);
+        $editForm = $this->createForm(TransactionType::class, $transaction);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -85,7 +86,7 @@ class TransactionController extends Controller
             return $this->redirectToRoute('transaction_edit', array('id' => $transaction->getId()));
         }
 
-        return $this->render('transaction/edit.html.twig', array(
+        return $this->render('@ToolGunStockPortfolio/Transaction/edit.html.twig', array(
             'transaction' => $transaction,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

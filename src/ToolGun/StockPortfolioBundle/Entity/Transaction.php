@@ -7,11 +7,6 @@ namespace ToolGun\StockPortfolioBundle\Entity;
  */
 class Transaction
 {
-
-    const BUY = 'buy';
-
-    const SELL = "sell";
-
     /**
      * @var int
      */
@@ -59,10 +54,6 @@ class Transaction
      */
     public function setBuyOrSell(string $buyOrSell): ?Transaction
     {
-        if (!in_array($buyOrSell, [self::BUY, self::SELL])) {
-            throw new \InvalidArgumentException("Invalid buy or sell status");
-        }
-
         $this->buyOrSell = $buyOrSell;
         return $this;
     }

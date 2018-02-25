@@ -1,1 +1,10 @@
 ToolGun\StockPortfolioBundle\Entity\Position:
+    properties:
+        valuation:
+            - NotBlank: ~
+        date:
+            - DateTime: ~
+        method:
+            - NotBlank: ~
+            - Choice:
+                choices:  [fifo, average]
