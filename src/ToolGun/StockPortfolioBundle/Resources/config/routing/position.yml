@@ -8,5 +8,17 @@ position_show:
     defaults: { _controller: "ToolGunStockPortfolioBundle:Position:show" }
     methods:  GET
 
+position_new:
+    path:     /new
+    defaults: { _controller: "ToolGunStockPortfolioBundle:Position:new" }
+    methods:  [GET, POST]
 
+position_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ToolGunStockPortfolioBundle:Position:edit" }
+    methods:  [GET, POST]
 
+position_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ToolGunStockPortfolioBundle:Position:delete" }
+    methods:  DELETE
