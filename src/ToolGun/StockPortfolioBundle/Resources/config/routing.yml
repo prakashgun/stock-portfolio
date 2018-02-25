@@ -1,3 +1,7 @@
+tool_gun_stock_portfolio_instrument:
+    resource: "@ToolGunStockPortfolioBundle/Resources/config/routing/instrument.yml"
+    prefix:   /instrument
+
 tool_gun_stock_portfolio_homepage:
     path:     /
     defaults: { _controller: ToolGunStockPortfolioBundle:Home:index }

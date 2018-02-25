@@ -33,7 +33,7 @@ class Instrument
      *
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -45,7 +45,7 @@ class Instrument
      *
      * @return Instrument
      */
-    public function setTicker(string $ticker): Instrument
+    public function setTicker(string $ticker): ?Instrument
     {
         $this->ticker = $ticker;
 
@@ -57,7 +57,7 @@ class Instrument
      *
      * @return string
      */
-    public function getTicker(): string
+    public function getTicker(): ?string
     {
         return $this->ticker;
     }
@@ -69,7 +69,7 @@ class Instrument
      *
      * @return Instrument
      */
-    public function setName(string $name): Instrument
+    public function setName(string $name): ?Instrument
     {
         $this->name = $name;
 
@@ -81,7 +81,7 @@ class Instrument
      *
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
@@ -93,7 +93,7 @@ class Instrument
      *
      * @return Instrument
      */
-    public function setCurrentPrice(float $currentPrice): Instrument
+    public function setCurrentPrice(float $currentPrice): ?Instrument
     {
         $this->currentPrice = $currentPrice;
 
@@ -105,7 +105,7 @@ class Instrument
      *
      * @return float
      */
-    public function getCurrentPrice(): float
+    public function getCurrentPrice(): ?float
     {
         return $this->currentPrice;
     }
