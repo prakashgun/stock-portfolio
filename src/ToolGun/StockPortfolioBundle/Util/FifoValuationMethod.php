@@ -9,7 +9,12 @@ class FifoValuationMethod implements ValuationMethodInterface
 
     private $buys = [];
     private $sales = [];
+    private $currentPrices = [];
     private $profit = [];
+    private $equityValue = [];
+    private $totalProfit = 0;
+    private $totalEquityValue = 0;
+    private $valuation = 0;
 
     /**
      * @return array
@@ -30,9 +35,49 @@ class FifoValuationMethod implements ValuationMethodInterface
     /**
      * @return array
      */
+    public function getCurrentPrices(): array
+    {
+        return $this->currentPrices;
+    }
+
+    /**
+     * @return array
+     */
     public function getProfit(): array
     {
         return $this->profit;
+    }
+
+    /**
+     * @return array
+     */
+    public function getEquityValue(): array
+    {
+        return $this->equityValue;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTotalProfit(): float
+    {
+        return $this->totalProfit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTotalEquityValue(): float
+    {
+        return $this->totalEquityValue;
+    }
+
+    /**
+     * @return float
+     */
+    public function getValuation(): float
+    {
+        return $this->valuation;
     }
 
     public function addBuy(string $instrumentName, int $quantity, float $price): ValuationMethodInterface
@@ -49,20 +94,24 @@ class FifoValuationMethod implements ValuationMethodInterface
         return $this;
     }
 
-    public function realisedGain(): array
+    public function addCurrentPrice(string $instrumentName, float $price): ValuationMethodInterface
     {
+        $this->currentPrices[$instrumentName] = $price;
 
+        return $this;
     }
 
     public function calculateProfit(): bool
     {
+        $totalProfit = 0;
+
         foreach ($this->buys as $instrument => $buys) {
             $totalSalesQuantity = $this->totalSalesQuantity($instrument);
             $totalSalesPrice = $this->totalSalesPrice($instrument);
 
-
             if ($totalSalesQuantity === 0) {
-                return true;
+                $this->profit[$instrument] = 0;
+                break;
             }
 
             if (!empty($buys)) {
@@ -91,8 +140,11 @@ class FifoValuationMethod implements ValuationMethodInterface
                 }
 
                 $this->profit[$instrument] = $totalSalesPrice - $totalFifoSalesPrice;
+                $totalProfit += $this->profit[$instrument];
             }
         }
+
+        $this->totalProfit = $totalProfit;
 
         return true;
     }
@@ -125,5 +177,46 @@ class FifoValuationMethod implements ValuationMethodInterface
         }
 
         return $total;
+    }
+
+    public function totalBuysQuantity(string $instrumentName): int
+    {
+        if (!isset($this->buys[$instrumentName])) {
+            return 0;
+        }
+
+        $total = 0;
+
+        foreach ($this->buys[$instrumentName] as $buy) {
+            $total += $buy['quantity'];
+        }
+
+        return $total;
+    }
+
+    public function calculateEquityValue(): bool
+    {
+        $totalEquityValue = 0;
+
+        foreach ($this->buys as $instrument => $buys) {
+            if (!isset($this->currentPrices[$instrument])) {
+                throw new \UnexpectedValueException("Current price not set for instrument " . $instrument);
+            }
+
+            $remainingShares = $this->totalBuysQuantity($instrument) - $this->totalSalesQuantity($instrument);
+
+            $equityValue = $remainingShares * $this->currentPrices[$instrument];
+            $this->equityValue[$instrument] = $equityValue;
+            $totalEquityValue += $equityValue;
+        }
+
+        $this->totalEquityValue = $totalEquityValue;
+
+        return true;
+    }
+
+    public function calculateValuation()
+    {
+        $this->valuation = $this->totalProfit + $this->totalEquityValue;
     }
 }

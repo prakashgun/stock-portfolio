@@ -19,5 +19,5 @@ interface ValuationMethodInterface
 
     public function addSale(string $instrumentName, int $quantity, float $price): ValuationMethodInterface;
 
-    public function realisedGain(): array;
+    public function calculateProfit(): bool;
 }
