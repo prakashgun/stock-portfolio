@@ -33,6 +33,11 @@ class Transaction
     private $date;
 
     /**
+     * @var Instrument
+     */
+    private $instrument;
+
+    /**
      * @return int
      */
     public function getId(): ?int
@@ -109,6 +114,24 @@ class Transaction
     public function setDate(\DateTime $date): ?Transaction
     {
         $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * @return Instrument
+     */
+    public function getInstrument(): ?Instrument
+    {
+        return $this->instrument;
+    }
+
+    /**
+     * @param Instrument $instrument
+     * @return Transaction
+     */
+    public function setInstrument(Instrument $instrument): ?Transaction
+    {
+        $this->instrument = $instrument;
         return $this;
     }
 }

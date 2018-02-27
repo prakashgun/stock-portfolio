@@ -18,5 +18,10 @@ ToolGun\StockPortfolioBundle\Entity\Transaction:
             type: float
         date:
             type: datetime
-
+    manyToOne:
+        instrument:
+            targetEntity: ToolGun\StockPortfolioBundle\Entity\Instrument
+            joinColumn:
+                name: instrument_id
+                nullable: false
     lifecycleCallbacks: {  }

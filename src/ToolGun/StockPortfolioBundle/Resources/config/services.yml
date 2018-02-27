@@ -1,4 +1,36 @@
 services:
-#    tool_gun_stock_portfolio.example:
-#        class: ToolGun\StockPortfolioBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+  #Repositories
+  tool_gun_stock_portfolio.repository.transaction_repository:
+      class: ToolGun\StockPortfolioBundle\Repository\TransactionRepository
+      factory: ["@doctrine", getRepository]
+      arguments:
+          - ToolGun\StockPortfolioBundle\Entity\Transaction
+
+  tool_gun_stock_portfolio.repository.instrument_repository:
+      class: ToolGun\StockPortfolioBundle\Repository\InstrumentRepository
+      factory: ["@doctrine", getRepository]
+      arguments:
+          - ToolGun\StockPortfolioBundle\Entity\Instrument
+
+
+  #Utils
+  tool_gun.util.fifo_valuation_method:
+      class: ToolGun\StockPortfolioBundle\Util\FifoValuationMethod
+
+  tool_gun.util.average_valuation_method:
+      class: ToolGun\StockPortfolioBundle\Util\AverageValuationMethod
+
+
+  #Services
+  tool_gun.service.fifo_valuation_service:
+      class: ToolGun\StockPortfolioBundle\Service\ValuationService
+      arguments:
+          - '@tool_gun_stock_portfolio.repository.transaction_repository'
+          - '@tool_gun.util.fifo_valuation_method'
+
+  tool_gun.service.average_valuation_service:
+      class: ToolGun\StockPortfolioBundle\Service\ValuationService
+      arguments:
+          - '@tool_gun_stock_portfolio.repository.transaction_repository'
+          - '@tool_gun.util.average_valuation_method'

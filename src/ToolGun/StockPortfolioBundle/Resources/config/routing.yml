@@ -13,3 +13,8 @@ tool_gun_stock_portfolio_transaction:
 tool_gun_stock_portfolio_homepage:
     path:     /
     defaults: { _controller: ToolGunStockPortfolioBundle:Home:index }
+
+
+tool_gun_stock_portfolio_valuation:
+    path:     /valuation/{method}
+    defaults: { _controller: ToolGunStockPortfolioBundle:Home:valuation, method: fifo }

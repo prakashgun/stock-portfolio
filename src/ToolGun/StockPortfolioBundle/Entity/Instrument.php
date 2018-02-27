@@ -109,4 +109,9 @@ class Instrument
     {
         return $this->currentPrice;
     }
+
+    public function __toString(): ?string
+    {
+        return $this->getName() . " (" . $this->getTicker() . ")";
+    }
 }

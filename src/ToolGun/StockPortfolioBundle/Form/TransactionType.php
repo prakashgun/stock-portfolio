@@ -16,6 +16,7 @@ class TransactionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('instrument')
             ->add('buyOrSell', ChoiceType::class, [
                 'choices' => [
                     'Buy' => 'buy',

@@ -3,10 +3,14 @@
 {% block body %}
     <h1>Transaction edit</h1>
 
-    {{ form_start(edit_form) }}
+    {% if instruments is not empty %}
+        {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        <input type="submit" value="Edit"/>
+        {{ form_end(edit_form) }}
+    {% else %}
+        <p>Please add instruments</p>
+    {% endif %}
 
     <ul>
         <li>
@@ -14,7 +18,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
     </ul>

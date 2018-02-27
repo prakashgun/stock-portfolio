@@ -35,6 +35,8 @@ class TransactionController extends Controller
      */
     public function newAction(Request $request)
     {
+        $instruments = $this->get('tool_gun_stock_portfolio.repository.instrument_repository')->findAll();
+
         $transaction = new Transaction();
         $form = $this->createForm(TransactionType::class, $transaction);
         $form->handleRequest($request);
@@ -50,6 +52,7 @@ class TransactionController extends Controller
         return $this->render('@ToolGunStockPortfolio/Transaction/new.html.twig', array(
             'transaction' => $transaction,
             'form' => $form->createView(),
+            'instruments' => $instruments
         ));
     }
 
