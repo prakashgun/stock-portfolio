@@ -1,4 +1,42 @@
 stock_portfolio
 ===============
 
-A Symfony project created on February 24, 2018, 11:15 am.
+Stock Portfolio
+
+A Symfony application that shows Stock portfolio.
+
+Server requirements
+===================
+PHP 7,
+MySQL
+
+
+Installation
+============
+After checkout of the master branch, 
+
+edit config file for database name and password
+
+**app/config/parameters.yml**
+
+and run the following commands:
+
+//// Install packages
+
+`composer install`
+
+
+// Create database
+
+`bin/console doctrine:database:create `
+
+//Create tables
+
+`bin/console doctrine:schema:update --force`
+
+
+
+After that open to the url according to your installation path:
+
+**http://localhost/web/app_dev.php/**
+

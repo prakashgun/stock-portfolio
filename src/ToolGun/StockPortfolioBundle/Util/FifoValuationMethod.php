@@ -4,6 +4,10 @@ namespace ToolGun\StockPortfolioBundle\Util;
 
 use ToolGun\StockPortfolioBundle\Util\Model\ValuationMethodInterface;
 
+/**
+ * Stock valuation method based on FIFO calculation
+ * @package ToolGun\StockPortfolioBundle\Util
+ */
 class FifoValuationMethod implements ValuationMethodInterface
 {
 
@@ -17,7 +21,7 @@ class FifoValuationMethod implements ValuationMethodInterface
     private $valuation = 0;
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getBuys(): array
     {
@@ -25,7 +29,7 @@ class FifoValuationMethod implements ValuationMethodInterface
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getSales(): array
     {
@@ -33,7 +37,7 @@ class FifoValuationMethod implements ValuationMethodInterface
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getCurrentPrices(): array
     {
@@ -41,7 +45,7 @@ class FifoValuationMethod implements ValuationMethodInterface
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getProfit(): array
     {
@@ -49,7 +53,7 @@ class FifoValuationMethod implements ValuationMethodInterface
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getEquityValue(): array
     {
@@ -57,7 +61,7 @@ class FifoValuationMethod implements ValuationMethodInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getTotalProfit(): float
     {
@@ -65,7 +69,7 @@ class FifoValuationMethod implements ValuationMethodInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getTotalEquityValue(): float
     {
@@ -73,13 +77,16 @@ class FifoValuationMethod implements ValuationMethodInterface
     }
 
     /**
-     * @return float
+     * {@inheritdoc}
      */
     public function getValuation(): float
     {
         return $this->valuation;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function addBuy(string $instrumentName, int $quantity, float $price): ValuationMethodInterface
     {
         $this->buys[$instrumentName][] = ['quantity' => $quantity, 'price' => $price];
@@ -87,6 +94,9 @@ class FifoValuationMethod implements ValuationMethodInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function addSale(string $instrumentName, int $quantity, float $price): ValuationMethodInterface
     {
         $this->sales[$instrumentName][] = ['quantity' => $quantity, 'price' => $price];
@@ -94,6 +104,9 @@ class FifoValuationMethod implements ValuationMethodInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function addCurrentPrice(string $instrumentName, float $price): ValuationMethodInterface
     {
         $this->currentPrices[$instrumentName] = $price;
@@ -101,6 +114,9 @@ class FifoValuationMethod implements ValuationMethodInterface
         return $this;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function calculateProfit(): bool
     {
         $totalProfit = 0;
@@ -149,6 +165,9 @@ class FifoValuationMethod implements ValuationMethodInterface
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function totalSalesPrice(string $instrumentName): int
     {
         if (!isset($this->sales[$instrumentName])) {
@@ -164,6 +183,9 @@ class FifoValuationMethod implements ValuationMethodInterface
         return $total;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function totalSalesQuantity(string $instrumentName): int
     {
         if (!isset($this->sales[$instrumentName])) {
@@ -179,6 +201,9 @@ class FifoValuationMethod implements ValuationMethodInterface
         return $total;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function totalBuysQuantity(string $instrumentName): int
     {
         if (!isset($this->buys[$instrumentName])) {
@@ -194,6 +219,9 @@ class FifoValuationMethod implements ValuationMethodInterface
         return $total;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function calculateEquityValue(): bool
     {
         $totalEquityValue = 0;
@@ -215,6 +243,9 @@ class FifoValuationMethod implements ValuationMethodInterface
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function calculateValuation(): bool
     {
         $this->valuation = $this->totalProfit + $this->totalEquityValue;
