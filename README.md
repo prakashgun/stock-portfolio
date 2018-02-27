@@ -40,3 +40,10 @@ After that open to the url according to your installation path:
 
 **http://localhost/web/app_dev.php/**
 
+Unit Tests
+==========
+
+Unit tests can be run by the command:
+
+`./vendor/bin/simple-phpunit`
+
