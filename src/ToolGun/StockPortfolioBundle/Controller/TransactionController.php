@@ -79,6 +79,8 @@ class TransactionController extends Controller
      */
     public function editAction(Request $request, Transaction $transaction)
     {
+        $instruments = $this->get('tool_gun_stock_portfolio.repository.instrument_repository')->findAll();
+
         $deleteForm = $this->createDeleteForm($transaction);
         $editForm = $this->createForm(TransactionType::class, $transaction);
         $editForm->handleRequest($request);
@@ -93,6 +95,7 @@ class TransactionController extends Controller
             'transaction' => $transaction,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'instruments' => $instruments
         ));
     }
 

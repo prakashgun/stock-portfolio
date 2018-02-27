@@ -4,6 +4,8 @@
     {% if transactions is not empty %}
         <h3>Explore the valuations</h3>
         <a href="{{ url('tool_gun_stock_portfolio_valuation', {'method': 'fifo'}) }}">First In First Out Strategy</a>
+        <br>
+        <a href="{{ url('tool_gun_stock_portfolio_valuation', {'method': 'average'}) }}">Average Cost Strategy</a>
     {% else %}
         <p>Please add transactions</p>
     {% endif %}

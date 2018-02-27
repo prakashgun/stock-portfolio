@@ -215,8 +215,10 @@ class FifoValuationMethod implements ValuationMethodInterface
         return true;
     }
 
-    public function calculateValuation()
+    public function calculateValuation(): bool
     {
         $this->valuation = $this->totalProfit + $this->totalEquityValue;
+
+        return true;
     }
 }

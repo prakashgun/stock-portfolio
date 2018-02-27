@@ -39,13 +39,16 @@ class HomeController extends Controller
         }
 
         try {
-            $realizedProfit = $valuationService->calculate();
+            $result = $valuationService->calculate();
         } catch (\Exception $exception) {
             //TODO: Error in calculation. Log the message
         }
 
         return $this->render('@ToolGunStockPortfolio/Home/valuation.html.twig', [
-            'realizedProfit' => $realizedProfit
+            'profit' => $result['profit'],
+            'equity_value' => $result['equity_value'],
+            'valuation' => $result['valuation'],
+            'method' => $method
         ]);
     }
 }

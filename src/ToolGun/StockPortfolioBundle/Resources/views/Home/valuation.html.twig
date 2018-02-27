@@ -1,5 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-    <p>Realised Profit is {{ realizedProfit }}</p>
+    {% if method  == 'fifo' %}
+        <p>
+            Profit is {{ profit }}
+            <br>
+            Equity Value is {{ equity_value }}
+            <br>
+            <b>Valuation is {{ valuation }}</b>
+        </p>
+    {% else %}
+        <p>This method is not implemented</p>
+    {% endif %}
 {% endblock %}

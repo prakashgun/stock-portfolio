@@ -6,12 +6,14 @@ services:
       factory: ["@doctrine", getRepository]
       arguments:
           - ToolGun\StockPortfolioBundle\Entity\Transaction
+      public: true
 
   tool_gun_stock_portfolio.repository.instrument_repository:
       class: ToolGun\StockPortfolioBundle\Repository\InstrumentRepository
       factory: ["@doctrine", getRepository]
       arguments:
           - ToolGun\StockPortfolioBundle\Entity\Instrument
+      public: true
 
 
   #Utils
@@ -27,10 +29,12 @@ services:
       class: ToolGun\StockPortfolioBundle\Service\ValuationService
       arguments:
           - '@tool_gun_stock_portfolio.repository.transaction_repository'
+          - '@tool_gun_stock_portfolio.repository.instrument_repository'
           - '@tool_gun.util.fifo_valuation_method'
 
   tool_gun.service.average_valuation_service:
       class: ToolGun\StockPortfolioBundle\Service\ValuationService
       arguments:
           - '@tool_gun_stock_portfolio.repository.transaction_repository'
+          - '@tool_gun_stock_portfolio.repository.instrument_repository'
           - '@tool_gun.util.average_valuation_method'

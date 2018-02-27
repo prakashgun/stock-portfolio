@@ -15,6 +15,6 @@ class HomeControllerTest extends WebTestCase
 //        $this->assertEquals(200, $client->getResponse()->getStatusCode());
 //        $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
 
-        $this->assertContains('Hello World', $client->getResponse()->getContent());
+        $this->assertContains('Stock Portfolio', $client->getResponse()->getContent());
     }
 }
