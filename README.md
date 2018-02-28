@@ -7,7 +7,7 @@ A Symfony application that shows Stock portfolio.
 
 Server requirements
 ===================
-PHP 7,
+PHP 7.1.11 (or greater),
 MySQL
 
 
